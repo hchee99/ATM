@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public UserData userData;
 
     private string userName = "Name";
+    private string id = "ID";
+    private string password = "Password";
     private int cash = 100000;
     private int balance = 50000;
     private void Awake()
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            userData = new UserData(userName, cash, balance);
+            userData = new UserData(userName, id, password, cash, balance);
             SaveUserData();
             Debug.Log("saved");
         }
