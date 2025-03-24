@@ -26,6 +26,7 @@ public class BankingSystem : MonoBehaviour
             GameManager.Instance.userData.cash += money;
             GameManager.Instance.userData.balance -= money;
             UIManager.Instance.Refresh();
+            GameManager.Instance.SaveUserData();
             PopupError.SetActive(false);
         }
         else
@@ -38,6 +39,7 @@ public class BankingSystem : MonoBehaviour
         if (int.TryParse(customInputField.text, out money))
         {
             BankingSystem.Instance.Deposit(money);
+            GameManager.Instance.SaveUserData();
         }
     }
     public void Withdraw(int money)
@@ -47,6 +49,7 @@ public class BankingSystem : MonoBehaviour
             GameManager.Instance.userData.cash -= money;
             GameManager.Instance.userData.balance += money;
             UIManager.Instance.Refresh();
+            GameManager.Instance.SaveUserData();
             PopupError.SetActive(false);
         }
         else
@@ -59,6 +62,7 @@ public class BankingSystem : MonoBehaviour
         if (int.TryParse(customInputField.text, out money))
         {
             BankingSystem.Instance.Withdraw(money);
+            GameManager.Instance.SaveUserData();
         }
     }
     public void ClosePopup()

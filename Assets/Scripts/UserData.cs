@@ -15,5 +15,6 @@ public class UserData
         this.cash = cash;
         this.balance = balance;
     }
+
 }
 

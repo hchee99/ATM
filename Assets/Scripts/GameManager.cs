@@ -16,7 +16,38 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            LoadUserData();
         }
-        userData = new UserData(userName, cash, balance);
+        
+    }
+    public void SaveUserData()
+    {
+        string json = JsonUtility.ToJson(userData);
+        PlayerPrefs.SetString("UserData",json);
+        PlayerPrefs.Save();
+        Debug.Log("UserData Saved:" + json);
+    }
+    public void LoadUserData()
+    {
+        if (PlayerPrefs.HasKey("UserData"))
+        {
+            string json = PlayerPrefs.GetString("UserData");
+            userData = JsonUtility.FromJson<UserData>(json);
+            Debug.Log("UserData loaded: "+json);
+        }
+        else
+        {
+            userData = new UserData(userName, cash, balance);
+            SaveUserData();
+            Debug.Log("saved");
+        }
+    }
+    private void Start()
+    {
+        //UserData loadedData = DataManager.Instance.LoadUserData();
+        //if (loadedData != null)
+        //{
+        //    userData = loadedData;
+        //}
     }
 }
