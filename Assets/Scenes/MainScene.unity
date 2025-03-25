@@ -7117,7 +7117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1463376929
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7308,6 +7308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PopupError: {fileID: 526725465}
+  LowMoneyError: {fileID: 1463376928}
+  NoDataError: {fileID: 148105340}
+  NoInputError: {fileID: 1166496884}
   customInputField: {fileID: 826590268}
   sendNameField: {fileID: 2073365019}
   sendMoneyField: {fileID: 364943484}
