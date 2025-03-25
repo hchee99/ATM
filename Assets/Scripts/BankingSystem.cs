@@ -11,6 +11,8 @@ public class BankingSystem : MonoBehaviour
     public GameObject PopupError;
 
     public TMP_InputField customInputField;
+    public TMP_InputField sendNameField;
+    public TMP_InputField sendMoneyField;
 
     private void Awake()
     {
@@ -68,5 +70,17 @@ public class BankingSystem : MonoBehaviour
     public void ClosePopup()
     {
         PopupError.SetActive(false);
+    }
+    public void SendMoney(int money)
+    {
+        if (int.TryParse(sendMoneyField.text, out money))
+        {
+            if (GameManager.Instance.userData.cash >= money)
+            {
+                GameManager.Instance.userData.cash -= money;
+                GameManager.Instance.SaveUserData();
+            }
+        }
+
     }
 }
