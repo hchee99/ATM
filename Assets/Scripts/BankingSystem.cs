@@ -78,7 +78,12 @@ public class BankingSystem : MonoBehaviour
             if (GameManager.Instance.userData.cash >= money)
             {
                 GameManager.Instance.userData.cash -= money;
+                UIManager.Instance.Refresh();
                 GameManager.Instance.SaveUserData();
+            }
+            else
+            {
+                PopupError.SetActive(true);
             }
         }
 

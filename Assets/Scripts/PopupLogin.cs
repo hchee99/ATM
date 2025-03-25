@@ -14,16 +14,20 @@ public class PopupLogin : MonoBehaviour
 
     public void Login()
     {
-        var data = GameManager.Instance.userData;
-        if (idField.text == data.id && pwField.text == data.password)
+        string inputId = idField.text;
+        string inputPw = pwField.text;
+        
+        if (PlayerPrefs.HasKey(inputId))
         {
-            GameManager.Instance.SaveUserData();
-            SceneManager.LoadScene(1);
-            Debug.Log("Scene Change");
-        }
-        else
-        {
+            string json = PlayerPrefs.GetString(inputId);
+            UserData loadedData = JsonUtility.FromJson<UserData>(json);
 
+            if (loadedData.password == inputPw)
+            {
+                GameManager.Instance.userData = loadedData;
+                GameManager.Instance.SaveUserData();
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            }
         }
     }
     public void SignUp()

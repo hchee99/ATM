@@ -16,6 +16,8 @@ public class PopupSignUp : MonoBehaviour
 
     public void SignUpError()
     {
+        string newId = idField.text;
+
         if (pwField.text != pwConfirmField.text || idField.text == GameManager.Instance.userData.id)
         {
             errorPanel.SetActive(true);
@@ -38,10 +40,20 @@ public class PopupSignUp : MonoBehaviour
 
     public void SaveID()
     {
-        GameManager.Instance.userData.id = idField.text;
-        GameManager.Instance.userData.userName = nameField.text;
-        GameManager.Instance.userData.password = pwField.text;
-        GameManager.Instance.SaveUserData();
+        UserData newUser = new UserData(
+            nameField.text,
+            idField.text,
+            pwField.text,
+            100000,
+            50000
+        );
+
+        string json = JsonUtility.ToJson( newUser);
+        PlayerPrefs.SetString(newUser.id, json);
+        PlayerPrefs.SetString("CurrentUserId",newUser.id);
+        PlayerPrefs.Save();
+
+        GameManager.Instance.userData = newUser;
         signupPanel.SetActive(false);
     }
 }
