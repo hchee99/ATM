@@ -10,6 +10,7 @@ public class PopupLogin : MonoBehaviour
     public TMP_InputField pwField;
     public GameObject loginpanel;
     public GameObject passwordpanel;
+    public GameObject signuppanel;
 
     public void Login()
     {
@@ -17,7 +18,8 @@ public class PopupLogin : MonoBehaviour
         if (idField.text == data.id && pwField.text == data.password)
         {
             GameManager.Instance.SaveUserData();
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene(1);
+            Debug.Log("Scene Change");
         }
         else
         {
@@ -26,6 +28,6 @@ public class PopupLogin : MonoBehaviour
     }
     public void SignUp()
     {
-        
+        signuppanel.SetActive(true);
     }
 }
